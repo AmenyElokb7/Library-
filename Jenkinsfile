@@ -30,16 +30,7 @@ pipeline {
             }
         }
 
-        stage('Test Backend') {
-            steps {
-                script {
-                    dir('library_backend') {
-                        // Running backend tests
-                        sh 'docker run --rm $DOCKER_IMAGE_BACKEND java -jar app.jar test'
-                    }
-                }
-            }
-        }
+
 
         stage('Build Frontend') {
             steps {
@@ -47,6 +38,16 @@ pipeline {
                     dir('react-library') {
                         // Building the frontend Docker image
                         sh 'docker build -t $DOCKER_IMAGE_FRONTEND .'
+                    }
+                }
+            }
+        }
+        stage('Test Backend') {
+            steps {
+                script {
+                    dir('library_backend') {
+                        // Running backend tests
+                        sh 'docker run --rm $DOCKER_IMAGE_BACKEND java -jar app.jar test'
                     }
                 }
             }
