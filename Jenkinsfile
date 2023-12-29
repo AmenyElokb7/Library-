@@ -80,7 +80,7 @@ pipeline {
             steps {
                 script {
                 // Use the actual KUBE_TOKEN from Jenkins credentials
-                withCredentials([string(credentialsId: 'jenkins-k8s-sa', variable: 'tDYu2i9E/WY4mE7lN5Dh6g==')]) {
+                withCredentials([string(credentialsId: 'jenkins-k8s-sa', variable: 'IOkE88i7bPnIaLGv55hiAQ3ygONWzX/q2nW7/S2kkFc=')]) {
                     // Apply the Kubernetes manifests for frontend and backend to Minikube
                     sh 'export KUBECONFIG=/home/devops/.kube/config'
 
