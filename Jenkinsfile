@@ -82,14 +82,14 @@ pipeline {
                 // Use the actual KUBE_TOKEN from Jenkins credentials
                 withCredentials([string(credentialsId: 'jenkins-k8s-sa', variable: 'tDYu2i9E/WY4mE7lN5Dh6g==')]) {
                     // Apply the Kubernetes manifests for frontend and backend to Minikube
-                    sh "kubectl config use-context minikube"
+                    sh "/usr/local/bin/kubectl config use-context minikube"
                     
                     // Apply the Kubernetes manifests for frontend and backend
-                    sh "kubectl apply -f k8s/backend/backend-deployment.yaml"
-                    sh "kubectl apply -f k8s/frontend/frontend-deployment.yaml"
+                    sh "/usr/local/bin/kubectl apply -f k8s/backend/backend-deployment.yaml"
+                    sh "/usr/local/bin/kubectl apply -f k8s/frontend/frontend-deployment.yaml"
                     
                     // Apply the Kubernetes service manifest
-                    sh "kubectl apply -f k8s/frontend/frontend-service.yaml"
+                    sh "/usr/local/bin/kubectl apply -f k8s/frontend/frontend-service.yaml"
             }
         }
     }
