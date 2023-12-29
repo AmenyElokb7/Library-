@@ -20,8 +20,11 @@ pipeline {
             steps {
                 script {
                     dir('library_backend') {
+                        echo 'Build started successfully'
                         // Building the backend Docker image
                         sh 'docker build -t $DOCKER_IMAGE_BACKEND .'
+                        echo 'Build completed successfully'
+
                     }
                 }
             }
