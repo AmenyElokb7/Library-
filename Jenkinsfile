@@ -8,8 +8,7 @@ pipeline {
         KUBECONFIG_CREDENTIALS_ID = 'jenkins-k8s-sa'
     }
         // Add other environment variables if necessary
-    }
-
+    
     stages {
         stage('Checkout') {
             steps {
@@ -94,5 +93,6 @@ pipeline {
             // Additional actions like cleanup or notifications
         }
     }
+}
 
 
