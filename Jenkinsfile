@@ -82,7 +82,7 @@ pipeline {
                 // Use the actual KUBE_TOKEN from Jenkins credentials
                 withCredentials([string(credentialsId: 'jenkins-k8s-sa', variable: 'tDYu2i9E/WY4mE7lN5Dh6g==')]) {
                     // Apply the Kubernetes manifests for frontend and backend to Minikube
-                    sh "/usr/local/bin/kubectl config use-context minikube"
+                    sh 'export KUBECONFIG=$(minikube -p jenkins-minikube -q kubeconfig)'
                     
                     // Apply the Kubernetes manifests for frontend and backend
                     sh "/usr/local/bin/kubectl apply -f k8s/backend/backend-deployment.yaml"
