@@ -5,6 +5,8 @@ pipeline {
         // Define environment variables
         DOCKER_IMAGE_BACKEND  = "amenyelokb/library_backend:latest"
         DOCKER_IMAGE_FRONTEND = "amenyelokb/react-library:latest"
+        KUBECONFIG_CREDENTIALS_ID = 'jenkins-k8s-sa'
+    }
         // Add other environment variables if necessary
     }
 
@@ -75,20 +77,16 @@ pipeline {
             }
         }
 
+         
         stage('Deploy to Kubernetes') {
             steps {
-                script {
-                    // Deploy Backend
-                    sh 'kubectl apply -f k8s/backend-deployment.yaml'
-                    sh 'kubectl apply -f k8s/backend-service.yaml'
-
-                    // Deploy Frontend
-                    sh 'kubectl apply -f k8s/frontend-deployment.yaml'
-                    sh 'kubectl apply -f k8s/frontend-service.yaml'
+                withCredentials([string(credentialsId: env.KUBECONFIG_CREDENTIALS_ID, variable: 'KUBE_TOKEN')]) {
+                    sh 'echo ${KUBE_TOKEN} | kubectl apply -f k8s/backend-deployment.yaml --token=${KUBE_TOKEN}'
                 }
             }
         }
     }
+   
 
     post {
         always {
@@ -97,3 +95,4 @@ pipeline {
         }
     }
 }
+
