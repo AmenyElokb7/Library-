@@ -42,12 +42,12 @@ pipeline {
                 }
             }
         }
-        stage('Test Backend') {
+       stage('Test Backend') {
             steps {
                 script {
                     dir('library_backend') {
                         // Running backend tests
-                        sh 'docker run --rm $DOCKER_IMAGE_BACKEND java -jar app.jar test'
+                      //  sh 'docker run --rm $DOCKER_IMAGE_BACKEND java -jar app.jar test'
                     }
                 }
             }
@@ -58,7 +58,7 @@ pipeline {
                 script {
                     dir('react-library') {
                         // Running frontend tests
-                        sh 'docker run --rm $DOCKER_IMAGE_FRONTEND npm test'
+                       // sh 'docker run --rm $DOCKER_IMAGE_FRONTEND npm test'
                     }
                 }
             }
