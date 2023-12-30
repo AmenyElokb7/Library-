@@ -17,6 +17,13 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Start Services') {
+            steps {
+                script {
+                    sh 'docker-compose up -d'
+                }
+            }
+        }
 
         stage('Build Backend') {
             steps {
