@@ -136,7 +136,7 @@ pipeline {
                 // Use the actual KUBE_TOKEN from Jenkins credentials
                 withCredentials([string(credentialsId: "${KUBECONFIG_CREDENTIALS_ID}", variable: 'KUBE_TOKEN')]) {
                         // Set up the Kubernetes configuration
-                        sh "echo \$KUBE_TOKEN | base64 -d > /tmp/kubeconfig"
+                        sh "echo \$KUBE_TOKEN | base64 --decode > /tmp/kubeconfig"
                         sh "kubectl config use-context minikube --kubeconfig=/tmp/kubeconfig"
 
                         // Apply the Kubernetes manifests for frontend and backend
