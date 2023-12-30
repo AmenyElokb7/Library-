@@ -9,4 +9,4 @@ spec:
     - protocol: TCP
       port: 80  # external port
       targetPort: 8081  # container's port
-  type: LoadBalancer  # Use NodePort or ClusterIP for internal services
+  type: NodePort    # Use NodePort or ClusterIP for internal services

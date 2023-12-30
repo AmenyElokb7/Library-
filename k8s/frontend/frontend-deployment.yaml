@@ -5,7 +5,7 @@ metadata:
   labels:
     app: frontend
 spec:
-  replicas: 2  # specify the number of instances
+  replicas: 5  # specify the number of instances
   selector:
     matchLabels:
       app: frontend

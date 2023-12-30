@@ -124,7 +124,7 @@ pipeline {
         stage('Push to Docker Registry') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-credentials') {
+                    docker.withRegistry('https://hub.docker.com/u/amenyelokb', 'dockerhub-credentials') {
                         docker.image("$DOCKER_IMAGE_BACKEND").push()
                         docker.image("$DOCKER_IMAGE_FRONTEND").push()
                     }
@@ -139,13 +139,11 @@ pipeline {
                         sh 'kubectl apply -f k8s/backend/backend-service.yaml'
                         sh 'kubectl apply -f k8s/frontend/frontend-deployment.yaml'
                         sh 'kubectl apply -f k8s/frontend/frontend-service.yaml'
+                }
+            }
         }
-    }
+
 }
-
-         
-
-    }
    
 
     post {
