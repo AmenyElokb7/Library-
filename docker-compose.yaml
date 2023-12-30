@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: node:latest # Use an image with the version of Node.js that you need
+    working_dir: /app
+    volumes:
+      - ./react-library:/app # Mount the project directory inside the container
+    command: sh -c "npm install && npm run start" # Replace with your start command
+    ports:
+      - "3000:3000" # Expose the port your app runs on
+    depends_on:
+      - backend
+
+  backend:
+    build: ./library_backend # Directory with your Spring Boot app's Dockerfile
+    ports:
+      - "8081:8081" # Expose the port your Spring Boot app runs on
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/reactlibrarydatabase
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7 # or use the version of MySQL you need
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=reactlibrarydatabase
+      - MYSQL_ROOT_PASSWORD=
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
+    driver: local
