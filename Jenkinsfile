@@ -24,6 +24,25 @@ pipeline {
                 }
             }
         }*/
+        stage('Print Kubeconfig') {
+            steps {
+                script {
+                    // Read and print the contents of the kubeconfig file
+                    def kubeconfigContents = readFile("${env.HOME}/.kube/config")
+                    echo "Kubeconfig Contents:\n${kubeconfigContents}"
+                }
+            }
+        }
+
+        stage('Check Kubernetes Connectivity') {
+            steps {
+                script {
+                    // Test connectivity to the Kubernetes cluster
+                    sh "kubectl --kubeconfig=${env.HOME}/.kube/config cluster-info"
+                }
+            }
+        }
+        //
         stage('Remove Existing Containers') {
     steps {
         script {
