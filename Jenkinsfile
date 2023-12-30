@@ -38,7 +38,7 @@ pipeline {
             steps {
                 script {
                     // Test connectivity to the Kubernetes cluster
-                    sh "kubectl --kubeconfig=${env.HOME}/.kube/config cluster-info"
+                    sh "kubectl --kubeconfig=$HOME/.kube/config cluster-info"
                 }
             }
         }
