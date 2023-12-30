@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     // Read and print the contents of the kubeconfig file
-                    def kubeconfigContents = readFile("${env.HOME}/.kube/config")
+                    def kubeconfigContents = readFile("/var/lib/jenkins/.kube/config")
                     echo "Kubeconfig Contents:\n${kubeconfigContents}"
                 }
             }
