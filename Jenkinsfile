@@ -139,10 +139,13 @@ pipeline {
                         sh 'kubectl apply -f k8s/backend/backend-service.yaml'
                         sh 'kubectl apply -f k8s/frontend/frontend-deployment.yaml'
                         sh 'kubectl apply -f k8s/frontend/frontend-service.yaml'
-            }
         }
     }
 }
+
+         
+
+    }
    
 
     post {
