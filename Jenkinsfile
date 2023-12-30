@@ -17,13 +17,31 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Start Services') {
+      /*  stage('Start Services') {
             steps {
                 script {
                     sh 'docker-compose up -d'
                 }
             }
+        }*/
+        stage('Start Backend') {
+    steps {
+        script {
+            sh 'docker build -t my-backend ./library_backend'
+            sh """
+            docker run -d \
+              --network=my_network \
+              --name backend \
+              -e SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/reactlibrarydatabase \
+              -e SPRING_DATASOURCE_USERNAME=root \
+              -e SPRING_DATASOURCE_PASSWORD= \
+              -p 8081:8081 \
+              my-backend
+            """
         }
+    }
+}
+
 
         stage('Build Backend') {
             steps {
