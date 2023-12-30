@@ -24,6 +24,14 @@ pipeline {
                 }
             }
         }*/
+        stage('Create Network') {
+    steps {
+        script {
+            sh 'docker network ls | grep my_network || docker network create my_network'
+        }
+    }
+}
+
         stage('Start Backend') {
     steps {
         script {
