@@ -24,6 +24,15 @@ pipeline {
                 }
             }
         }*/
+        stage('Remove Existing Containers') {
+    steps {
+        script {
+            // Force remove the backend container if it exists
+            sh 'docker rm -f backend || true'
+        }
+    }
+}
+
         stage('Create Network') {
     steps {
         script {
@@ -141,6 +150,8 @@ pipeline {
         always {
             echo 'Performing post-build actions for both frontend and backend'
             // Additional actions like cleanup or notifications
+            sh 'docker rm -f frontend backend db || true'
+            sh 'docker network rm my_network || true'
         }
     }
 }
