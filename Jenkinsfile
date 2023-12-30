@@ -34,14 +34,7 @@ pipeline {
             }
         }
 
-        stage('Check Kubernetes Connectivity') {
-            steps {
-                script {
-                    // Test connectivity to the Kubernetes cluster
-                    sh "kubectl --kubeconfig=$HOME/.kube/config cluster-info"
-                }
-            }
-        }
+     
         //
         stage('Remove Existing Containers') {
     steps {
@@ -141,19 +134,16 @@ pipeline {
             steps {
                 script {
                 // Use the actual KUBE_TOKEN from Jenkins credentials
-                withCredentials([string(credentialsId: 'jenkins-sa', variable: 'KUBE_TOKEN')]) {
-                    sh "kubectl config set-credentials sa-user --token=${env.KUBE_TOKEN}"
-                    sh "kubectl config set-context minikube --user=sa-user"
-                    // Apply the Kubernetes manifests for frontend and backend to Minikube
+                withCredentials([string(credentialsId: "${KUBECONFIG_CREDENTIALS_ID}", variable: 'KUBE_TOKEN')]) {
+                        // Set up the Kubernetes configuration
+                        sh "echo \$KUBE_TOKEN | base64 -d > /tmp/kubeconfig"
+                        sh "kubectl config use-context minikube --kubeconfig=/tmp/kubeconfig"
 
-                    
-                    // Apply the Kubernetes manifests for frontend and backend
-                    sh 'kubectl --kubeconfig=/home/devops/.kube/config apply -f k8s/backend/backend-deployment.yaml'
-                    sh "/usr/local/bin/kubectl apply -f k8s/backend/backend-service.yaml"
-                    sh "/usr/local/bin/kubectl apply -f k8s/frontend/frontend-deployment.yaml"
-                    
-                    // Apply the Kubernetes service manifest
-                    sh "/usr/local/bin/kubectl apply -f k8s/frontend/frontend-service.yaml"
+                        // Apply the Kubernetes manifests for frontend and backend
+                        sh 'kubectl apply -f k8s/backend/backend-deployment.yaml'
+                        sh 'kubectl apply -f k8s/backend/backend-service.yaml'
+                        sh 'kubectl apply -f k8s/frontend/frontend-deployment.yaml'
+                        sh 'kubectl apply -f k8s/frontend/frontend-service.yaml'
             }
         }
     }
