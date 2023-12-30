@@ -82,7 +82,7 @@ pipeline {
                 // Use the actual KUBE_TOKEN from Jenkins credentials
                 withCredentials([string(credentialsId: 'jenkins-sa', variable: 'KUBE_TOKEN')]) {
                     sh "kubectl config set-credentials sa-user --token=${env.KUBE_TOKEN}"
-                    sh "kubectl config set-context --current --user=sa-user"
+                    sh "kubectl config set-context minikube --user=sa-user"
                     // Apply the Kubernetes manifests for frontend and backend to Minikube
                     sh 'export KUBECONFIG=/home/devops/.kube/config'
 
