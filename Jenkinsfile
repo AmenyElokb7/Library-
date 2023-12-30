@@ -126,11 +126,10 @@ pipeline {
                     sh "kubectl config set-credentials sa-user --token=${env.KUBE_TOKEN}"
                     sh "kubectl config set-context minikube --user=sa-user"
                     // Apply the Kubernetes manifests for frontend and backend to Minikube
-                    sh 'export KUBECONFIG=/home/devops/.kube/config'
 
                     
                     // Apply the Kubernetes manifests for frontend and backend
-                    sh 'kubectl apply -f k8s/backend/backend-deployment.yaml'
+                    sh 'kubectl --kubeconfig=/home/devops/.kube/config apply -f k8s/backend/backend-deployment.yaml'
                     sh "/usr/local/bin/kubectl apply -f k8s/backend/backend-service.yaml"
                     sh "/usr/local/bin/kubectl apply -f k8s/frontend/frontend-deployment.yaml"
                     
