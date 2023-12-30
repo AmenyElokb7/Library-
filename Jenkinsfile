@@ -86,7 +86,7 @@ pipeline {
 
                     
                     // Apply the Kubernetes manifests for frontend and backend
-                    sh "/usr/local/bin/kubectl apply -f k8s/backend/backend-deployment.yaml"
+                    sh "kubectl apply -f k8s/backend/backend-deployment.yaml"
                     sh "/usr/local/bin/kubectl apply -f k8s/frontend/frontend-deployment.yaml"
                     
                     // Apply the Kubernetes service manifest
