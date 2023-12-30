@@ -6,6 +6,7 @@ pipeline {
         DOCKER_IMAGE_BACKEND  = "amenyelokb/library_backend:latest"
         DOCKER_IMAGE_FRONTEND = "amenyelokb/react-library:latest"
         KUBECONFIG_CREDENTIALS_ID = 'jenkins-sa'
+        KUBECONFIG = "/var/lib/jenkins/kubeconfig"
         
     }
         // Add other environment variables if necessary
@@ -133,13 +134,6 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                // Use the actual KUBE_TOKEN from Jenkins credentials
-                withCredentials([string(credentialsId: "${KUBECONFIG_CREDENTIALS_ID}", variable: 'KUBE_TOKEN')]) {
-                        // Set up the Kubernetes configuration
-                        sh "rm -f /tmp/kubeconfig"
-                        sh "echo -n \$KUBE_TOKEN | base64 --decode > /tmp/kubeconfig"
-                        sh "kubectl config use-context minikube --kubeconfig=/tmp/kubeconfig"
-
                         // Apply the Kubernetes manifests for frontend and backend
                         sh 'kubectl apply -f k8s/backend/backend-deployment.yaml'
                         sh 'kubectl apply -f k8s/backend/backend-service.yaml'
