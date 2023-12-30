@@ -25,7 +25,7 @@ pipeline {
                 }
             }
         }*/
-        stage('Print Kubeconfig') {
+    /*    stage('Print Kubeconfig') {
             steps {
                 script {
                     // Read and print the contents of the kubeconfig file
@@ -44,7 +44,7 @@ pipeline {
             sh 'docker rm -f backend || true'
         }
     }
-}
+}*/
 
         stage('Create Network') {
     steps {
@@ -124,7 +124,7 @@ pipeline {
         stage('Push to Docker Registry') {
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.com/', 'dockerhub-credentials') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-credentials') {
                         docker.image("$DOCKER_IMAGE_BACKEND").push()
                         docker.image("$DOCKER_IMAGE_FRONTEND").push()
                     }
