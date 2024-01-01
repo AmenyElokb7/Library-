@@ -65,7 +65,7 @@ pipeline {
               -e SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/reactlibrarydatabase \
               -e SPRING_DATASOURCE_USERNAME=root \
               -e SPRING_DATASOURCE_PASSWORD= \
-              -p 8081:8081 \
+              -p 8082:8082 \
               my-backend
             """
         }
@@ -131,7 +131,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy to Kubernetes') {
+      stage('Deploy to Kubernetes') {
             steps {
                 script {
                         // Apply the Kubernetes manifests for frontend and backend

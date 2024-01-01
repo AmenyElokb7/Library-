@@ -5,7 +5,7 @@ metadata:
   labels:
     app: frontend
 spec:
-  replicas: 5  # specify the number of instances
+  replicas: 1
   selector:
     matchLabels:
       app: frontend
@@ -13,9 +13,12 @@ spec:
     metadata:
       labels:
         app: frontend
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '9101'
     spec:
       containers:
       - name: frontend
-        image: amenyelokb/react-library:latest  # specify your Docker image
+        image: amenyelokb/react-library:latest
         ports:
-        - containerPort: 3000  # replace with your container's port
+        - containerPort: 5173
