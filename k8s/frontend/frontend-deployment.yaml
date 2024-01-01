@@ -18,7 +18,7 @@ spec:
         prometheus.io/port: '9101'
     spec:
       containers:
-      - name: frontend
+      - name: frontend-deployment
         image: amenyelokb/react-library:latest
         ports:
         - containerPort: 5173

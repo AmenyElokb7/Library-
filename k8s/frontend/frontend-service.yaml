@@ -3,10 +3,11 @@ kind: Service
 metadata:
   name: frontend-service
 spec:
-  selector:
-    app: frontend
+  type: NodePort
   ports:
-    - protocol: TCP
+    - name: http
       port: 80  # external port
       targetPort: 5173  # container's port
-  type: LoadBalancer  # Use NodePort or ClusterIP for internal services
+  selector:
+    app: frontend
+  
