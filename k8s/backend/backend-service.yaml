@@ -8,5 +8,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80  # external port
-      targetPort: 8081  # container's port
+      targetPort: 8082  # container's port
   type: NodePort    # Use NodePort or ClusterIP for internal services

@@ -5,7 +5,7 @@ metadata:
   labels:
     app: backend
 spec:
-  replicas: 5  # specify the number of instances
+  replicas: 0
   selector:
     matchLabels:
       app: backend
@@ -13,9 +13,23 @@ spec:
     metadata:
       labels:
         app: backend
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '9101'
     spec:
       containers:
       - name: backend
-        image: amenyelokb/library_backend:latest  # specify your Docker image
+        image: amenyelokb/library_backend:latest
         ports:
-        - containerPort: 8081  # replace with your container's port
+        - containerPort: 8082
+        env:
+        - name: MYSQL_HOST
+          value: "localhost"  
+        - name: MYSQL_PORT
+          value: "3306"
+        - name: MYSQL_USER
+          value: "root"  
+        - name: MYSQL_PASSWORD
+          value: ""  
+        - name: MYSQL_DB
+          value: "reactlibrarydatabase"  
