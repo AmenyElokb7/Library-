@@ -18,6 +18,7 @@ WORKDIR /app
 
 # Copy the JAR file from the build stage to the final image
 COPY --from=build /app/target/*.jar app.jar
+EXPOSE 8082
 
 # Command to run the application
 ENTRYPOINT ["java","-jar","app.jar"]

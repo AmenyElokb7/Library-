@@ -5,7 +5,7 @@ metadata:
   labels:
     app: backend
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: backend
@@ -30,6 +30,6 @@ spec:
         - name: MYSQL_USER
           value: "root"  
         - name: MYSQL_PASSWORD
-          value: ""  
+          value: "root"  
         - name: MYSQL_DB
           value: "reactlibrarydatabase"  
