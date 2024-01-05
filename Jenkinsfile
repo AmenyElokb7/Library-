@@ -92,10 +92,10 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 script {
-                    dir('react-library') {
+                    //dir('react-library') {
                         // Building the frontend Docker image
-                        sh 'docker build -t $DOCKER_IMAGE_FRONTEND .'
-                    }
+                        //sh 'docker build -t $DOCKER_IMAGE_FRONTEND .'
+                    //}
                 }
             }
         }
