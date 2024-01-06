@@ -70,7 +70,11 @@
             <artifactId>tomcat-embed-core</artifactId>
             <version>10.1.16</version>
         </dependency>
-
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+            <version>1.12.1</version>
+        </dependency>
 
 
     </dependencies>

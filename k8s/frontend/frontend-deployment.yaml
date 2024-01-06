@@ -13,7 +13,7 @@ spec:
         app: frontend
       annotations:
         prometheus.io/scrape: 'true'
-        prometheus.io/port: '9101'
+        prometheus.io/port: '8081'
     spec:
       containers:
       - name: frontend-deployment

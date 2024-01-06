@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-deployment
-  labels:
-    app: backend
 spec:
   replicas: 1
   selector:
@@ -15,21 +13,12 @@ spec:
         app: backend
       annotations:
         prometheus.io/scrape: 'true'
-        prometheus.io/port: '9101'
+        prometheus.io/port: '8082'
+        metrics_path: '/metrics'
     spec:
       containers:
-      - name: backend
+      - name: backend-deployment
         image: amenyelokb/library_backend:latest
         ports:
         - containerPort: 8082
-        env:
-        - name: MYSQL_HOST
-          value: "localhost"  
-        - name: MYSQL_PORT
-          value: "3306"
-        - name: MYSQL_USER
-          value: "root"  
-        - name: MYSQL_PASSWORD
-          value: "root"  
-        - name: MYSQL_DB
-          value: "reactlibrarydatabase"  
+       

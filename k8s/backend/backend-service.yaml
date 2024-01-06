@@ -3,11 +3,12 @@ kind: Service
 metadata:
   name: backend-service
   labels:
-    app: backend-http
+    app: backend
 spec:
-  selector:
   ports:
-    - protocol: TCP
-      port: 80
+    - name: http
+      port: 8080
       targetPort: 8082
   type: LoadBalancer
+  selector:
+    app: backend
