@@ -14,9 +14,9 @@ spec:
       labels:
         app: backend
       annotations:
-        prometheus.io/scrape: 'true'
-        prometheus.io/port: '8082'
-        path: '/actuator/metrics'
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "8082"
     spec:
       containers:
       - name: backend-deployment
