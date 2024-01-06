@@ -8,10 +8,7 @@ spec:
   selector:
     matchLabels:
       app: backend
-  namespaceSelector:
-    matchNames:
-      - default
   endpoints:
   - port: http
-    interval: 10s
-    path: /metrics
+    interval: 15s
+    path: /actuator/metrics
