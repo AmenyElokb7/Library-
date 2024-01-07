@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import BookModel from "../../../models/BookModel";
-import { useAuth } from "../../../AuthContext";
 
 export const ChangeQuantityOfBook: React.FC<{ book: BookModel, deleteBook: any }> = (props, key) => {
     
-    const { authenticated } = useAuth(); 
+    
     const [quantity, setQuantity] = useState<number>(0);
     const [remaining, setRemaining] = useState<number>(0);
 
+    console.log(props.book.id)
     useEffect(() => {
         const fetchBookInState = () => {
             props.book.copies ? setQuantity(props.book.copies) : setQuantity(0);
@@ -17,11 +17,12 @@ export const ChangeQuantityOfBook: React.FC<{ book: BookModel, deleteBook: any }
     }, []);
 
     async function increaseQuantity() {
-        const url = `http://localhost:8080/api/admin/secure/increase/book/quantity/?bookId=${props.book?.id}`;
-        const requestOptions = {
+        
+        const url = `http://127.0.0.1:8081/api/admin/secure/increase/book/quantity?bookId=${props.book?.id}`;
+        const requestOptions : RequestInit = {
             method: 'PUT',
             headers: {
-                // Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+                'Authorization': 'Basic ' + localStorage.getItem('basicAuth'),
                 'Content-Type': 'application/json'
             }
         };
@@ -35,15 +36,16 @@ export const ChangeQuantityOfBook: React.FC<{ book: BookModel, deleteBook: any }
     }
 
     async function decreaseQuantity() {
-        const url = `http://localhost:8080/api/admin/secure/decrease/book/quantity/?bookId=${props.book?.id}`;
-        const requestOptions = {
+        const url = `http://127.0.0.1:8081/api/admin/secure/decrease/book/quantity?bookId=${props.book?.id}`;
+        const requestOptions : RequestInit = {
             method: 'PUT',
             headers: {
-                // Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
-                'Content-Type': 'application/json'
-            }
-        };
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic ' + localStorage.getItem('basicAuth')
 
+            },
+           
+        };
         const quantityUpdateResponse = await fetch(url, requestOptions);
         if (!quantityUpdateResponse.ok) {
             throw new Error('Something went wrong!');
@@ -53,13 +55,14 @@ export const ChangeQuantityOfBook: React.FC<{ book: BookModel, deleteBook: any }
     }
 
     async function deleteBook() {
-        const url = `http://localhost:8080/api/admin/secure/delete/book/?bookId=${props.book?.id}`;
-        const requestOptions = {
+        const url = `http://127.0.0.1:8081/api/admin/secure/delete/book?bookId=${props.book?.id}`;
+        const requestOptions : RequestInit = {
             method: 'DELETE',
             headers: {
-                // Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+                'Authorization': 'Basic ' + localStorage.getItem('basicAuth'),
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: 'include' 
         };
 
         const updateResponse = await fetch(url, requestOptions);

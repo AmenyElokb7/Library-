@@ -1,14 +1,9 @@
 import { useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import { AddNewBook } from './components/AddNewBook';
 import { AdminMessages } from './components/AdminMessages';
 import { ChangeQuantityOfBooks } from './components/ChangeQuantityOfBooks';
-import { useAuth } from '../../AuthContext';
 
-export const ManageLibraryPage = () => {
-
-    const { authenticated } = useAuth(); 
-
+export const ManageLibraryPage = (props) => {
     const [changeQuantityOfBooksClick, setChangeQuantityOfBooksClick] = useState(false);
     const [messagesClick, setMessagesClick] = useState(false);
 
@@ -27,9 +22,7 @@ export const ManageLibraryPage = () => {
         setMessagesClick(true);
     }
 
-    if (!authenticated) {
-        return <Redirect to='/home'/>
-    }
+   
 
     return (
         <div className='container'>

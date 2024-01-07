@@ -19,7 +19,7 @@ export const SearchBooksPage = () => {
 
     useEffect(() => {
         const fetchBooks = async () => {
-            const baseUrl: string = "http://localhost:8080/api/books";
+            const baseUrl: string = "http://127.0.0.1:8081/api/books";
 
             let url: string = '';
 
@@ -181,7 +181,7 @@ export const SearchBooksPage = () => {
                             <h3>
                                 Can't find what you are looking for?
                             </h3>
-                            <a type='button' className='btn main-color btn-md px-4 me-md-2 fw-bold text-white'
+                            <a type='button' className='btn custom-button btn-md px-4 me-md-2 fw-bold text-white'
                                 href='#'>Library Services</a>
                         </div>
                     }

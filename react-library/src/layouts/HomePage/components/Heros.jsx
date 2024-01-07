@@ -1,7 +1,12 @@
+
 import { Link } from "react-router-dom";
 
-export const Heros = () => {
-
+export const Heros = (props) => {
+    let auth;
+    if(props.authUser !== null){
+        auth = true
+    }else
+        auth = false
 
     return (
         <div>
@@ -18,12 +23,12 @@ export const Heros = () => {
                                 Whether it is to learn a new skill or grow within one,
                                 we will be able to provide the top content for you!
                             </p>
-                            {/* {authState?.isAuthenticated ? 
-                                <Link type='button' className='btn main-color btn-lg text-white'
+                            {auth ? 
+                                <Link type='button' className='btn custom-button btn-lg text-white'
                                     to='search'>Explore top books </Link>
                                 :
                                 <Link className='btn main-color btn-lg text-white' to='/login'>Sign up</Link>
-                            }   */}
+                            }  
                         </div>
                     </div>
                 </div>
@@ -59,12 +64,12 @@ export const Heros = () => {
                                 Whether it is to learn a new skill or grow within one,
                                 we will be able to provide the top content for you!
                             </p>
-                            {/* {authState?.isAuthenticated ? 
+                            {auth ? 
                                 <Link type='button' className='btn main-color btn-lg text-white'
                                     to='search'>Explore top books</Link>
                                 :
                                 <Link className='btn main-color btn-lg text-white' to='/login'>Sign up</Link>
-                        } */}
+                        }
                         </div>
                     </div>
                     <div className='m-2'>

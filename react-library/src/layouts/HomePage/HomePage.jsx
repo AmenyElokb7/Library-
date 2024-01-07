@@ -3,13 +3,13 @@ import { ExploreTopBooks } from "./components/ExploreTopBooks";
 import { Heros } from "./components/Heros";
 import { LibraryServices } from "./components/LibraryServices";
 
-export const HomePage = () => {
+export const HomePage = (props) => {
     return (
         <>
             <ExploreTopBooks/>
             <Carousel/>
-            <Heros/>
-            <LibraryServices/>
+            <Heros authUser={props.authUser}/>
+            <LibraryServices authUser={props.authUser}/>
         </>
     );
 }

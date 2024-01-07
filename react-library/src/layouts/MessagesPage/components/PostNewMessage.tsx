@@ -1,24 +1,23 @@
-// import { useOktaAuth } from '@okta/okta-react';
 import { useState } from 'react';
 import MessageModel from '../../../models/MessageModel';
-import { useAuth } from '../../../AuthContext';
 
 export const PostNewMessage = () => {
     
-    const { authenticated } = useAuth(); 
+    let authState = true; 
+    
     const [title, setTitle] = useState('');
     const [question, setQuestion] = useState('');
     const [displayWarning, setDisplayWarning] = useState(false);
     const [displaySuccess, setDisplaySuccess] = useState(false);
 
     async function submitNewQuestion() {
-        const url = `http://localhost:8080/api/messages/secure/add/message`;
-        if (authenticated && title !== '' && question !== '') {
+        const url = `http://127.0.0.1:8081/api/messages/secure/add/message`;
+        if (authState && title !== '' && question !== '') {
             const messageRequestModel: MessageModel = new MessageModel(title, question);
             const requestOptions = {
                 method: 'POST',
                 headers: {
-                    // Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+                    'Authorization': 'Basic ' + localStorage.getItem('basicAuth'),
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(messageRequestModel)
@@ -42,7 +41,7 @@ export const PostNewMessage = () => {
     return (
         <div className='card mt-3'>
             <div className='card-header'>
-                Ask question to Luv 2 Read Admin
+                Ask question to Admin
             </div>
             <div className='card-body'>
                 <form method='POST'>

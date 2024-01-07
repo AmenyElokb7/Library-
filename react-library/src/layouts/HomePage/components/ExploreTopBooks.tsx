@@ -2,16 +2,28 @@ import { Link } from "react-router-dom";
 
 export const ExploreTopBooks = () => {
     return (
-        <div className='p-5 mb-4 bg-dark header'>
-            <div className='container-fluid py-5 text-white 
-                d-flex justify-content-center align-items-center'>
-                <div>
-                    <h1 className='display-5 fw-bold'>Find your next adventure</h1>
-                    <p className='col-md-8 fs-4'>Where would you like to go next?</p>
-                    <Link type='button' className='btn main-color btn-lg text-white' to='/search'>
-                        Explore top books</Link>
-                </div>
-            </div>
-        </div>
+        <div className='header bg-dark text-white'>
+  <div className='container-fluid py-5'>
+    <div className='text-center'>
+      <h1 className='display-4 mb-4'>
+        <span className="text-bg-black">Discover Your Next Favorite Book</span>
+      </h1>
+      <p className='lead'>
+        <span className="text-bg-black">
+          Explore a curated selection of the top books waiting for you.
+        </span>
+      </p>
+      <Link
+        to='/search'
+        className='btn btn-lg custom-button'
+      >
+        Explore Top Books
+      </Link>
+    </div>
+  </div>
+</div>
+
+      
+      
     );
 }

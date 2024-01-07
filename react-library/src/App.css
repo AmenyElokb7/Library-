@@ -1,9 +1,27 @@
 :root{
     --mainOpacity: rgba(0, 0, 0, 0.55);
 }
-
+/* Add this CSS to your stylesheet or style block */
+.custom-button {
+    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+    color: white; /* Text color */
+    border: 2px solid black; /* Border */
+    padding: 10px 20px; /* Adjust padding as needed */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition */
+  }
+  
+  .custom-button:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Darker opacity on hover */
+    color: white; /* Text color on hover */
+  }
+/* Add this CSS to your stylesheet or style block */
+.text-bg-black {
+    background-color: black;
+    padding: 5px 10px; /* Adjust padding as needed */
+  }
+    
 .header {
-    background-image: url("./Images/PublicImages/image-2.jpg");
+    background-image: url("./Images/PublicImages/image-1.jpg");
     opacity: var(--mainOpacity);
     height: 25em !important;
 }
@@ -22,19 +40,26 @@ background-color: #3b8cc6; ;
 }
 
 .col-image-left {
-    background-image: url("./Images/PublicImages/image-4.jpg");
+    background-image: url("./Images/PublicImages/image-2.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 25em !important;
 }
 
 .col-image-right {
-    background-image: url("./Images/PublicImages/image-1.jpg");
+    background-image: url("./Images/PublicImages/image-2.jpg");
     height: 25em !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+
 }
 
 .lost-image {
-    background-image: url("./Images/PublicImages/image-3.jpg");
+    background-image: url("./Images/PublicImages/image-3.png");
     height: 25em !important;
-    width: "720"
+    width: "720";
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .homepage-carousel-title {

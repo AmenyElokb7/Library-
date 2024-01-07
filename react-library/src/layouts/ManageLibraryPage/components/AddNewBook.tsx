@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import AddBookRequest from '../../../models/AddBookRequest';
-import { useAuth } from '../../../AuthContext';
 
 export const AddNewBook = () => {
 
-    const { authenticated } = useAuth(); 
 
     // New Book
     const [title, setTitle] = useState('');
@@ -40,17 +38,20 @@ export const AddNewBook = () => {
     }
 
     async function submitNewBook() {
-        const url = `http://localhost:8080/api/admin/secure/add/book`;
-        if (authenticated && title !== '' && author !== '' && category !== 'Category' 
+        const url = `http://127.0.0.1:8081/api/admin/secure/add/book`;
+        const username = localStorage.getItem("username");
+        const password = localStorage.getItem("password");
+        if (title !== '' && author !== '' && category !== 'Category' 
             && description !== '' && copies >= 0) {
                 const book: AddBookRequest = new AddBookRequest(title, author, description, copies, category);
                 book.img = selectedImage;
-                const requestOptions = {
+                const requestOptions: RequestInit = {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Basic ' + localStorage.getItem('basicAuth')
                     },
-                    body: JSON.stringify(book)
+                    body: JSON.stringify(book),
                 };
 
                 const submitNewBookResponse = await fetch(url, requestOptions);

@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../../../AuthContext";
 
-export const LibraryServices = () => {
-
-    const { authenticated } = useAuth(); 
+export const LibraryServices = (props) => {
+    let auth;
+    if(props.authUser !== null){
+        auth = true
+    }else
+        auth = false
 
     return(
         <div className='container my-5'>
@@ -17,8 +19,8 @@ export const LibraryServices = () => {
                         send our library admin's a personal message!
                     </p>
                     <div className='d-grid gap-2 justify-content-md-start mb-4 mb-lg-3'>
-                        {authenticated ? 
-                        <Link to='/messages' type='button' className='btn main-color btn-lg px-4 me-md-2 fw-bold text-white'>
+                        {auth ? 
+                        <Link to='/messages' type='button' className='btn custom-button btn-lg px-4 me-md-2 fw-bold text-white'>
                             Library Services
                         </Link>   
                         :

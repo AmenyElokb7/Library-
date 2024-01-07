@@ -4,11 +4,10 @@ import MessageModel from '../../../models/MessageModel';
 import { Pagination } from '../../Utils/Pagination';
 import { SpinnerLoading } from '../../Utils/SpinnerLoading';
 import { AdminMessage } from './AdminMessage';
-import { useAuth } from '../../../AuthContext';
 
 export const AdminMessages = () => {
     
-    const { authenticated } = useAuth(); 
+    let authState = true
 
     // Normal Loading Pieces
     const [isLoadingMessages, setIsLoadingMessages] = useState(true);
@@ -27,12 +26,12 @@ export const AdminMessages = () => {
 
     useEffect(() => {
         const fetchUserMessages = async () => {
-            if (authenticated) {
-                const url = `http://localhost:8080/api/messages/search/findByClosed/?closed=false&page=${currentPage - 1}&size=${messagesPerPage}`;
+        if (authState)  {
+                const url = `http://127.0.0.1:8081/api/messages/search/findByClosed?closed=false&page=${currentPage - 1}&size=${messagesPerPage}`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
-                      //  Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+                        'Authorization': 'Basic ' + localStorage.getItem('basicAuth'),
                         'Content-Type': 'application/json'
                     }
                 };
@@ -52,7 +51,7 @@ export const AdminMessages = () => {
             setHttpError(error.message);
         })
         window.scrollTo(0, 0);
-    }, [authenticated, currentPage, btnSubmit]);
+    }, [authState, currentPage, btnSubmit]);
 
     if (isLoadingMessages) {
         return (
@@ -70,13 +69,13 @@ export const AdminMessages = () => {
 
 
     async function submitResponseToQuestion(id: number, response: string) {
-        const url = `http://localhost:8080/api/messages/secure/admin/message`;
-        if (authenticated && id !== null && response !== '') {
+        const url = `http://127.0.0.1:8081/api/messages/secure/admin/message`;
+        if (authState && id !== null && response !== '') {
             const messageAdminRequestModel: AdminMessageRequest = new AdminMessageRequest(id, response);
             const requestOptions = {
                 method: 'PUT',
                 headers: {
-                    // Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+                    'Authorization': 'Basic ' + localStorage.getItem('basicAuth'),
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(messageAdminRequestModel)

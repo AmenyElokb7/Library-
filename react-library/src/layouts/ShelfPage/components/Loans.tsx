@@ -1,14 +1,13 @@
-// import { useOktaAuth } from '@okta/okta-react';
+import { useOktaAuth } from '@okta/okta-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ShelfCurrentLoans from '../../../models/ShelfCurrentLoans';
 import { SpinnerLoading } from '../../Utils/SpinnerLoading';
 import { LoansModal } from './LoansModal';
-import { useAuth } from '../../../AuthContext';
 
 export const Loans = () => {
     
-    const { authenticated } = useAuth(); 
+    let authState = true;
     const [httpError, setHttpError] = useState(null);
 
     // Current Loans
@@ -18,12 +17,13 @@ export const Loans = () => {
 
     useEffect(() => {
         const fetchUserCurrentLoans = async () => {
-            if (authenticated) {
-                const url = `http://localhost:8080/api/books/secure/currentloans`;
+            let authState = true
+if (authState)  {
+                const url = `http://127.0.0.1:8081/api/books/secure/currentloans`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
-                        // Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+                        'Authorization': 'Basic ' + localStorage.getItem('basicAuth'),
                         'Content-Type': 'application/json'
                     }
                 };
@@ -41,7 +41,7 @@ export const Loans = () => {
             setHttpError(error.message);
         })
         window.scrollTo(0, 0);
-    }, [authenticated, checkout]);
+    }, [authState, checkout]);
 
     if (isLoadingUserLoans) {
         return (
@@ -60,11 +60,11 @@ export const Loans = () => {
     }
 
     async function returnBook(bookId: number) {
-        const url = `http://localhost:8080/api/books/secure/return/?bookId=${bookId}`;
+        const url = `http://127.0.0.1:8081/api/books/secure/return?bookId=${bookId}`;
         const requestOptions = {
             method: 'PUT',
             headers: {
-                // Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+                'Authorization': 'Basic ' + localStorage.getItem('basicAuth'),
                 'Content-Type': 'application/json'
             }
         };
@@ -76,11 +76,11 @@ export const Loans = () => {
     }
 
     async function renewLoan(bookId: number) {
-        const url = `http://localhost:8080/api/books/secure/renew/loan/?bookId=${bookId}`;
+        const url = `http://127.0.0.1:8081/api/books/secure/renew/loan?bookId=${bookId}`;
         const requestOptions = {
             method: 'PUT',
             headers: {
-                // Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+                'Authorization': 'Basic ' + localStorage.getItem('basicAuth'),
                 'Content-Type': 'application/json'
             }
         };
