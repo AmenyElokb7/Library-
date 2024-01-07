@@ -21,7 +21,7 @@ export const HistoryPage = () => {
         const fetchUserHistory = async () => {
             let authState = true
 if (authState)  {
-                const url = `http://127.0.0.1:8081/api/histories/search/findBooksByUserEmail?userEmail=${'test'}&page=${currentPage - 1}&size=5`;
+                const url = `http://127.0.0.1:8082/api/histories/search/findBooksByUserEmail?userEmail=${'test'}&page=${currentPage - 1}&size=5`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {

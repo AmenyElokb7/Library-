@@ -15,7 +15,7 @@ const LoginWidget = ({ onLogin }) => {
         const token = btoa(`${username}:${password}`);
         
         try {
-            const response = await fetch('http://127.0.0.1:8081/api/login', {
+            const response = await fetch('http://127.0.0.1:8082/api/login', {
                 method: 'GET',
                 headers: { 
                     "Authorization": "Basic " + token
@@ -25,7 +25,7 @@ const LoginWidget = ({ onLogin }) => {
             if (response.ok) {
                 localStorage.setItem('basicAuth', token);
                 // Make another request to get user details (assuming such an endpoint exists)
-                const userDetailsResponse = await fetch('http://127.0.0.1:8081/api/userDetails', {
+                const userDetailsResponse = await fetch('http://127.0.0.1:8082/api/userDetails', {
                     headers: { "Authorization": "Basic " + token }
                 });
     

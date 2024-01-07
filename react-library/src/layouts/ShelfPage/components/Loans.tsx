@@ -19,7 +19,7 @@ export const Loans = () => {
         const fetchUserCurrentLoans = async () => {
             let authState = true
 if (authState)  {
-                const url = `http://127.0.0.1:8081/api/books/secure/currentloans`;
+                const url = `http://127.0.0.1:8082/api/books/secure/currentloans`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
@@ -60,7 +60,7 @@ if (authState)  {
     }
 
     async function returnBook(bookId: number) {
-        const url = `http://127.0.0.1:8081/api/books/secure/return?bookId=${bookId}`;
+        const url = `http://127.0.0.1:8082/api/books/secure/return?bookId=${bookId}`;
         const requestOptions = {
             method: 'PUT',
             headers: {
@@ -76,7 +76,7 @@ if (authState)  {
     }
 
     async function renewLoan(bookId: number) {
-        const url = `http://127.0.0.1:8081/api/books/secure/renew/loan?bookId=${bookId}`;
+        const url = `http://127.0.0.1:8082/api/books/secure/renew/loan?bookId=${bookId}`;
         const requestOptions = {
             method: 'PUT',
             headers: {

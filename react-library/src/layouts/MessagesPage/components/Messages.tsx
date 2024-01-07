@@ -21,7 +21,7 @@ export const Messages = () => {
                 const userEmail = userDetails.username;
                 
                 if (userEmail) {
-                    const url = `http://127.0.0.1:8081/api/messages/search/findByUserEmail?userEmail=${encodeURIComponent(userEmail)}&page=${currentPage - 1}&size=${messagesPerPage}`;
+                    const url = `http://127.0.0.1:8082/api/messages/search/findByUserEmail?userEmail=${encodeURIComponent(userEmail)}&page=${currentPage - 1}&size=${messagesPerPage}`;
                     const requestOptions = {
                         method: 'GET',
                         headers: {
