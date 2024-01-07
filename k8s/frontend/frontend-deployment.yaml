@@ -11,9 +11,6 @@ spec:
     metadata:
       labels:
         app: frontend
-      annotations:
-        prometheus.io/scrape: 'true'
-        prometheus.io/port: '8081'
     spec:
       containers:
       - name: frontend-deployment
