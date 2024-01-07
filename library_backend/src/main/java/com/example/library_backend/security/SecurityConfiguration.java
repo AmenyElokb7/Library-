@@ -34,7 +34,7 @@ public class SecurityConfiguration {
                 .cors(cors -> cors
                         .configurationSource(request -> {
                             CorsConfiguration config = new CorsConfiguration();
-                            config.setAllowedOrigins(Arrays.asList("http://127.0.0.1:3000","http://127.0.0.1:8081","http://localhost:3000","http://localhost:8082","http://127.0.0.1:8082","http://localhost:8081","http://192.168.49.2:30606"));
+                            config.setAllowedOrigins(Arrays.asList("http://127.0.0.1:3000","http://127.0.0.1:8081","http://localhost:3000","http://localhost:8083","http://127.0.0.1:8083","http://localhost:8081","http://192.168.49.2:30606"));
                             config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                             config.setAllowedHeaders(Arrays.asList("Content-Type","Authorization"));
                             config.setAllowCredentials(true);

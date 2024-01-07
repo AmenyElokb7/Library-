@@ -37,7 +37,7 @@ export const BookCheckoutPage = () => {
 
     useEffect(() => {
         const fetchBook = async () => {
-            const baseUrl: string = `http://127.0.0.1:8082/api/books/${bookId}`;
+            const baseUrl: string = `http://127.0.0.1:8083/api/books/${bookId}`;
 
             const response = await fetch(baseUrl);
 
@@ -69,7 +69,7 @@ export const BookCheckoutPage = () => {
 
     useEffect(() => {
         const fetchBookReviews = async () => {
-            const reviewUrl: string = `http://127.0.0.1:8082/api/reviews/search/findByBookId?bookId=${bookId}`;
+            const reviewUrl: string = `http://127.0.0.1:8083/api/reviews/search/findByBookId?bookId=${bookId}`;
 
             const responseReviews = await fetch(reviewUrl);
 
@@ -116,7 +116,7 @@ export const BookCheckoutPage = () => {
         const fetchUserReviewBook = async () => {
             let authState = true
 if (authState)  {
-                const url = `http://127.0.0.1:8082/api/reviews/secure/user/book?bookId=${bookId}`;
+                const url = `http://127.0.0.1:8083/api/reviews/secure/user/book?bookId=${bookId}`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
@@ -143,7 +143,7 @@ if (authState)  {
         const fetchUserCurrentLoansCount = async () => {
             let authState = true
 if (authState)  {
-                const url = `http://127.0.0.1:8082/api/books/secure/currentloans/count`;
+                const url = `http://127.0.0.1:8083/api/books/secure/currentloans/count`;
                 const requestOptions = {
                     method: 'GET',
                     headers: { 
@@ -170,7 +170,7 @@ if (authState)  {
         const fetchUserCheckedOutBook = async () => {
             let authState = true
 if (authState)  {
-                const url = `http://127.0.0.1:8082/api/books/secure/ischeckedout/byuser?bookId=${bookId}`;
+                const url = `http://127.0.0.1:8083/api/books/secure/ischeckedout/byuser?bookId=${bookId}`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
@@ -210,7 +210,7 @@ if (authState)  {
     }
 
     async function checkoutBook() {
-        const url = `http://127.0.0.1:8082/api/books/secure/checkout?bookId=${book?.id}`;
+        const url = `http://127.0.0.1:8083/api/books/secure/checkout?bookId=${book?.id}`;
         const requestOptions = {
             method: 'PUT',
             headers: {
@@ -232,7 +232,7 @@ if (authState)  {
         }
 
         const reviewRequestModel = new ReviewRequestModel(starInput, bookId, reviewDescription);
-        const url = `http://127.0.0.1:8082/api/reviews/secure`;
+        const url = `http://127.0.0.1:8083/api/reviews/secure`;
         const requestOptions = {
             method: 'POST',
             headers: {

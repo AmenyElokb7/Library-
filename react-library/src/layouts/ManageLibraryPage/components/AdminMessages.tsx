@@ -27,7 +27,7 @@ export const AdminMessages = () => {
     useEffect(() => {
         const fetchUserMessages = async () => {
         if (authState)  {
-                const url = `http://127.0.0.1:8082/api/messages/search/findByClosed?closed=false&page=${currentPage - 1}&size=${messagesPerPage}`;
+                const url = `http://127.0.0.1:8083/api/messages/search/findByClosed?closed=false&page=${currentPage - 1}&size=${messagesPerPage}`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
@@ -69,7 +69,7 @@ export const AdminMessages = () => {
 
 
     async function submitResponseToQuestion(id: number, response: string) {
-        const url = `http://127.0.0.1:8082/api/messages/secure/admin/message`;
+        const url = `http://127.0.0.1:8083/api/messages/secure/admin/message`;
         if (authState && id !== null && response !== '') {
             const messageAdminRequestModel: AdminMessageRequest = new AdminMessageRequest(id, response);
             const requestOptions = {

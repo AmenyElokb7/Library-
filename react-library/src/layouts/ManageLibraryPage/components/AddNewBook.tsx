@@ -38,7 +38,7 @@ export const AddNewBook = () => {
     }
 
     async function submitNewBook() {
-        const url = `http://127.0.0.1:8082/api/admin/secure/add/book`;
+        const url = `http://127.0.0.1:8083/api/admin/secure/add/book`;
         const username = localStorage.getItem("username");
         const password = localStorage.getItem("password");
         if (title !== '' && author !== '' && category !== 'Category' 
