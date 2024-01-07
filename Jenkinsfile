@@ -62,7 +62,7 @@ pipeline {
             steps {
                 script {
                     dir('react-library') {
-                        sh 'docker build -t $DOCKER_IMAGE_FRONTEND .'
+                        'docker build --no-cache -t $DOCKER_IMAGE_FRONTEND .'
                     }
                 }
             }
