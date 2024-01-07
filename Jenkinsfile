@@ -35,7 +35,7 @@ pipeline {
               -e SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/reactlibrarydatabase \
               -e SPRING_DATASOURCE_USERNAME=root \
               -e SPRING_DATASOURCE_PASSWORD=root \
-              -p 8082:8082 \
+              -p 8083:8083 \
               my-backend
             """
         }
