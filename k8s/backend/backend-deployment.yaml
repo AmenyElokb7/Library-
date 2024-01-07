@@ -16,11 +16,11 @@ spec:
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/path: "/prometheus"
-        prometheus.io/port: "8082"
+        prometheus.io/port: "8083"
     spec:
       containers:
       - name: backend-deployment
         image: amenyelokb/library_backend:latest
         ports:
-        - containerPort: 8082
+        - containerPort: 8083
        
